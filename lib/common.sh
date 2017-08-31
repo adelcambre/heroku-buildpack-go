@@ -70,7 +70,9 @@ downloadFile() {
     mkdir -p "${targetDir}"
     pushd "${targetDir}" &> /dev/null
         start "Fetching ${localName}"
-            ${CURL} -O "${BucketURL}/${fileName}"
+            ${CURL} -O "${BucketURL}/${fileName}" ||
+              ${CURL} -O "$(<"${FilesJSON}" jq -r '."'${fileName}'".URL')"
+
             if [ "${fileName}" != "${localName}" ]; then
                 mv "${fileName}" "${localName}"
             fi
