@@ -96,6 +96,9 @@ SHAValid() {
     else
         sh="$(shasum -a256 "${targetFile}" | cut -d \  -f 1)"
     fi
+
+    echo $sh
+    echo $sw
     [ "${sh}" = "${sw}" ]
 }
 
