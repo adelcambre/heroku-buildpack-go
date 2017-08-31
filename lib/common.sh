@@ -73,6 +73,8 @@ downloadFile() {
             ${CURL} -O "${BucketURL}/${fileName}" ||
               ${CURL} -O "$(<"${FilesJSON}" jq -r '."'${fileName}'".URL')"
 
+            echo `file ${fileName}`
+
             if [ "${fileName}" != "${localName}" ]; then
                 mv "${fileName}" "${localName}"
             fi
