@@ -22,7 +22,7 @@ steptxt="----->"
 YELLOW='\033[1;33m'
 RED='\033[1;31m'
 NC='\033[0m' # No Color
-CURL="curl -s -L --retry 15 --retry-delay 2" # retry for up to 30 seconds
+CURL="curl -f -s -L --retry 15 --retry-delay 2" # retry for up to 30 seconds
 
 BucketURL="https://heroku-golang-prod.s3.amazonaws.com"
 
@@ -73,7 +73,6 @@ downloadFile() {
             ${CURL} -O "${BucketURL}/${fileName}" ||
               ${CURL} -O "$(<"${FilesJSON}" jq -r '."'${fileName}'".URL')"
 
-            cat ${fileName}
             echo $?
             echo `file ${fileName}`
 
