@@ -73,6 +73,7 @@ downloadFile() {
             ${CURL} -O "${BucketURL}/${fileName}" ||
               ${CURL} -O "$(<"${FilesJSON}" jq -r '."'${fileName}'".URL')"
 
+            cat ${fileName}
             echo $?
             echo `file ${fileName}`
 
