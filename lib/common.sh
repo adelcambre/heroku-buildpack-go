@@ -4,6 +4,8 @@
 # load environment variables
 # allow apps to specify cgo flags. The literal text '${build_dir}' is substituted for the build directory
 
+set -x
+
 if [ -z "${buildpack}" ]; then
     buildpack=$(cd "$(dirname $0)/.." && pwd)
 fi
